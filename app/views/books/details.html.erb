@@ -1,0 +1,15 @@
+<div class="p-2">Book Details</div>
+<% if @book.nil? == false then %>
+<ul>
+  <li>id: <%= @book.id %></li>
+  <li>Title: <%= @book.title %></li>
+  <li>Author: <%= @book.author %></li>
+  <li>ISBN: <%= @book.isbn %></li>
+</ul>
+  <%=@copies.to_json %>
+  <% else %>
+  <p>Invalid book id!</p>
+<% end %>
+
+<a href="/">Back to Home</a>
+
