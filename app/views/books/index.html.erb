@@ -1,6 +1,40 @@
-<h1>My Books</h1>
-<ul>
-  <% for book in @books %>
-    <li><a href="/books/<%=book.id%>"><%=book.title%></a></li>
-  <% end %>
-</ul>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <p class="subtitle">
+      <a href="/">Bookish</a>
+    </p>
+    <p class="title">
+      <a href="/">Library</a>
+    </p>
+  </div>
+</section>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">Home</a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary">
+              <Strong>Manage Library</Strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="content">
+  <ul>
+    <% for book in @books %>
+      <li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+    <% end %>
+  </ul>
+</div>
