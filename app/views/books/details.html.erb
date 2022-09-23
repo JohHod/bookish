@@ -36,13 +36,15 @@
 
 <div class="content p-4">
   <% if @book.nil? == false then %>
-    <img class="cover" style="display:inline-block" src="https://covers.openlibrary.org/b/isbn/<%= @book.isbn %>-L.jpg">
+    <div class="box">
+      <img class="cover" style="display:inline-block" src="https://covers.openlibrary.org/b/isbn/<%= @book.isbn %>-L.jpg">
     <ul class="book-details">
       <p class="title is-size-4"><i><%= @book.title %></i></p>
       <p class="subtitle">by <%= @book.author %></p>
       <p>ISBN: <%= @book.isbn %></p>
+      <%=@stock_message.html_safe %>
     </ul>
-
+    </div>
     <p>Current loans</p>
     <table class="table">
       <% if @copies.length > 0 %>
