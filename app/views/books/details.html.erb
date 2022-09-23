@@ -59,7 +59,9 @@
           <% if !copy.borrower.nil? %>
             <tr>
               <th><%= copy.id %></th>
-              <th><%= copy.get_due_date %></th>
+              <th class="<%= copy.get_due_date < Time.now ? "has-text-danger" : ""%>">
+                <%= copy.get_due_date %>
+              </th>
             </tr>
           <% end %>
           </tbody>

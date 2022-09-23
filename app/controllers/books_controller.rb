@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     @stock_message = if available_stock == 0
                        "<p><strong class='has-text-danger'>No copies in stock</strong></p>"
                      else
-                       "<p>#{available_stock} cop#{available_stock > 1 ? 'ies' : 'y'} in stock</p>"
+                       "<p>#{available_stock} cop#{available_stock > 1 ? 'ies' : 'y'} available to borrow</p>"
                      end
   end
 end
