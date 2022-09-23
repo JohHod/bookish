@@ -30,6 +30,42 @@
       </div>
     </div>
   </div>
-
-  </div>
 </nav>
+
+
+<div class="content p-4">
+  <div class="columns">
+  <div class="column">
+    <p class="is-size-4">Books</p>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Total Copies</th>
+        <th>Available to Borrow</th>
+        <th>Loaned Out</th>
+        <th>Overdue</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @book_data.each do |book| %>
+
+          <tr>
+            <th><%= book[:id] %></th>
+            <th><%= book[:title] %></th>
+            <th><%= book[:author]%></th>
+            <th><%= book[:total_copies] %></th>
+            <th><%= book[:available] %></th>
+            <th><%= book[:loaned_out] %></th>
+            <th><%= book[:overdue] %></th>
+          </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+  </div>
+  </div>
+</div>
+

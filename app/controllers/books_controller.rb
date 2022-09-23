@@ -10,18 +10,10 @@ class BooksController < ApplicationController
       @book.title = "ERROR"
       @book.isbn = "-1"
     end
-    puts(@book.inspect)
-    @copies = []
-    available_stock = 0
-    Copy.find_each do |copy|
-      if copy.book_id == params[:id].to_i then
-        if copy.due_date.nil? then
-          available_stock += 1
-        else
-          @copies.push(copy)
-        end
-      end
-    end
+    puts(Book.inspect)
+    @copies = @book.get_copies
+    available_stock = @copies.filter {|copy| copy.borrower.nil? }.length
+
     @stock_message = if available_stock == 0
                        "<p><strong class='has-text-danger'>No copies in stock</strong></p>"
                      else
