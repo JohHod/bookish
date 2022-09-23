@@ -5,3 +5,13 @@
 a.navbar-item:hover {
   background-color: rgba(0, 0, 0, 0.05) !important;
 }
+
+ul.book-details {
+  display:inline-block;
+  position: absolute;
+}
+
+img.cover {
+  width:150px;
+  height:220px;
+}

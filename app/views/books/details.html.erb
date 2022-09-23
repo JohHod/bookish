@@ -4,67 +4,69 @@
       <a href="/">Bookish</a>
     </p>
     <p class="title">
-      <a href="/books/<%=params[:id] %>">Book Details - <i><%= @book.title %></i></a>
+      <a href="/books/<%= params[:id] %>">Book Details - <i><%= @book.title %></i></a>
     </p>
   </div>
 </section>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">Home</a>
-      <p class="navbar-item" href="/">></p>
-      <a class="navbar-item" href="/books/<%=params[:id] %>"><%= @book.title %></a>
-      <a role="button" id="navbar-burger" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="toggleClass('navbarMenu','is-active');toggleClass('navbar-burger','is-active');">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-    <div id="navbarMenu" class="navbar-menu">
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <Strong>Manage Library</Strong>
-            </a>
-          </div>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">Home</a>
+    <p class="navbar-item" href="/">></p>
+    <a class="navbar-item" href="/books/<%= params[:id] %>"><%= @book.title %></a>
+    <a role="button" id="navbar-burger" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="toggleClass('navbarMenu','is-active');toggleClass('navbar-burger','is-active');">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarMenu" class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <Strong>Manage Library</Strong>
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
-    </div>
-  </nav>
+  </div>
+</nav>
 
-<div class="content">
-<% if @book.nil? == false then %>
-<ul>
-  <li>id: <%= @book.id %></li>
-  <li>Title: <%= @book.title %></li>
-  <li>Author: <%= @book.author %></li>
-  <li>ISBN: <%= @book.isbn %></li>
-</ul>
+<div class="content p-4">
+  <% if @book.nil? == false then %>
+    <img class="cover" style="display:inline-block" src="https://covers.openlibrary.org/b/isbn/<%= @book.isbn %>-L.jpg">
+    <ul class="book-details">
+      <p class="title is-size-4"><i><%= @book.title %></i></p>
+      <p class="subtitle">by <%= @book.author %></p>
+      <p>ISBN: <%= @book.isbn %></p>
+    </ul>
 
     <p>Current loans</p>
     <table class="table">
       <% if @copies.length > 0 %>
-          <thead>
-          <tr>
-            <th>Copy ID</th>
-            <th>Due Date</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @copies.each do |copy| %>
-          <tr>
-            <th><%=copy.id %></th>
-            <th><%=copy.get_due_date %></th>
-          </tr>
-            <% end %>
+        <thead>
+        <tr>
+          <th>Copy ID</th>
+          <th>Due Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @copies.each do |copy| %>
+          <% if !copy.due_date.nil? %>
+            <tr>
+              <th><%= copy.id %></th>
+              <th><%= copy.get_due_date %></th>
+            </tr>
+          <% end %>
           </tbody>
+        <% end %>
       <% end %>
     </table>
 
   <% else %>
-  <p>Invalid book id!</p>
-<% end %>
+    <p>Invalid book id!</p>
+  <% end %>
 
 </div>
