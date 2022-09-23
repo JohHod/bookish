@@ -5,6 +5,12 @@ class BooksController < ApplicationController
 
   def details
     @book = Book.find_by_id(params[:id])
+    if @book.nil? then
+      @book = Book.new
+      @book.title = "ERROR"
+      @book.isbn = "-1"
+    end
+    puts(@book.inspect)
     @copies = []
     available_stock = 0
     Copy.find_each do |copy|
@@ -17,7 +23,7 @@ class BooksController < ApplicationController
       end
     end
     @stock_message = if available_stock == 0
-                       "<p><strong class='has-text-danger'>Out of stock</strong></p>"
+                       "<p><strong class='has-text-danger'>No copies in stock</strong></p>"
                      else
                        "<p>#{available_stock} cop#{available_stock > 1 ? 'ies' : 'y'} in stock</p>"
                      end

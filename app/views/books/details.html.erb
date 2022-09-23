@@ -35,7 +35,7 @@
 </nav>
 
 <div class="content p-4">
-  <% if @book.nil? == false then %>
+  <% if @book.isbn != "-1" then %>
     <div class="box">
       <img class="cover" style="display:inline-block" src="https://covers.openlibrary.org/b/isbn/<%= @book.isbn %>-L.jpg">
     <ul class="book-details">
@@ -45,9 +45,9 @@
       <%=@stock_message.html_safe %>
     </ul>
     </div>
-    <p>Current loans</p>
+    <p class="is-size-4">Copies on Loan</p>
+    <% if @copies.length > 0 %>
     <table class="table">
-      <% if @copies.length > 0 %>
         <thead>
         <tr>
           <th>Copy ID</th>
@@ -56,7 +56,7 @@
         </thead>
         <tbody>
         <% @copies.each do |copy| %>
-          <% if !copy.due_date.nil? %>
+          <% if !copy.borrower.nil? %>
             <tr>
               <th><%= copy.id %></th>
               <th><%= copy.get_due_date %></th>
@@ -68,7 +68,7 @@
     </table>
 
   <% else %>
-    <p>Invalid book id!</p>
+    <p class="has-text-danger">Invalid book id! (<%=params[:id] %>)</p>
   <% end %>
 
 </div>
