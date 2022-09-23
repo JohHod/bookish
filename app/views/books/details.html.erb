@@ -41,7 +41,6 @@
   <li>Title: <%= @book.title %></li>
   <li>Author: <%= @book.author %></li>
   <li>ISBN: <%= @book.isbn %></li>
-  <li>book: <%= @book.to_json%></li>
 </ul>
 
     <p>Current loans</p>
@@ -49,13 +48,15 @@
       <% if @copies.length > 0 %>
           <thead>
           <tr>
-            <th>Due date</th>
+            <th>Copy ID</th>
+            <th>Due Date</th>
           </tr>
           </thead>
           <tbody>
           <% @copies.each do |copy| %>
           <tr>
-            <th>HELLO<%=copy.to_json%><%=copy.due_date %></th>
+            <th><%=copy.id %></th>
+            <th><%=copy.get_due_date %></th>
           </tr>
             <% end %>
           </tbody>
